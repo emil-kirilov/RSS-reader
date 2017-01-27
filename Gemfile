@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.3.11'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -54,3 +54,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #RSpec
 gem 'rspec', '~> 3.0'
+
+#fix rails generate rspec:install bug with thor 0.19.4
+gem "thor", "= 0.19.1"
+group :development, :test do
+  gem 'rspec-rails',      ">= 2.0.0.beta"
+end
+
+#Factory girl
+gem 'factory_girl_rails', '~> 4.5.0', group: [:development, :test]
