@@ -1,13 +1,6 @@
-error.messages
-<% unless @feed.errors.messages.empty? %>
-	<%= @feed.errors.messages %>
+<% flash.each do |name, msg| %>
+  <%= name %>: <%= msg %>
 <% end %>
-</br>
-
-notice : <%= p flash[:notice] if flash[:notice] %>
-</br>
-error: <%= p flash[:error] if flash[:error] %>
-</br>
 
 
 <p>New feed</p>

@@ -6,16 +6,12 @@ class FeedsController < ApplicationController
 	def create
 		@feed = Feed.new(feed_params)
 
-		#unless legit @feed 
-		#	flash[:notice] = 'Invalid'
-		#end
-
 		if legit @feed and @feed.save
 			flash[:notice] = 'The new feed was successfully added.'
 			redirect_to feeds_path
 		else
-			#flash[:error] == 'Invalid link. Please enter a new one.'
-			redirect_to new_feed_path
+			flash.now[:error] = 'You have either entered an invalid link or you already receive news from this RSS feeder.'
+			render :new
 		end
 	end
 

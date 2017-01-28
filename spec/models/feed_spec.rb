@@ -11,10 +11,8 @@ RSpec.describe Feed, :type => :model do
   	expect(feed).not_to be_valid
   end
 
-  #TODO fix this
   it "is not valid with invalid url" do
-  	feed = Feed.new
-  	feed.url = 'test'
+  	feed = Feed.new(url: 'test')
   	expect(feed).not_to be_valid
   end
 end
