@@ -1,0 +1,11 @@
+<% flash.each do |name, msg| %>
+  <%= name %>: <%= msg %>
+<% end %>
+</br></br>
+
+<% @posts.each do |post| %>
+	<%= post.inspect %>
+	<%= link_to 'Delete post', post, :method => :delete %>
+	</br>
+<% end %>
+

@@ -5,6 +5,8 @@
 
 <% @feeds.each do |feed| %>
 	<%= feed.inspect %>
+	<%= link_to 'Edit feed', edit_feed_path(feed) %>
+	<%= link_to 'Delete feed', feed, :method => :delete %>
 	</br>
 <% end %>
 

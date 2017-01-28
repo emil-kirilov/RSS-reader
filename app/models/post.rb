@@ -4,5 +4,5 @@ class Post < ActiveRecord::Base
 	validates :feed_id, presence: true
 	validates :title, presence: true
 	validates :link, presence: true
-	validates :pud_date, presence:true 
+	validates :pub_date, presence:true 
 end

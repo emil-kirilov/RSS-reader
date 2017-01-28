@@ -1,0 +1,14 @@
+<% flash.each do |name, msg| %>
+  <%= name %>: <%= msg %>
+<% end %>
+
+<p>Edit feed</p>
+
+<%= form_for @feed, method: :patch, url: feed_path(@feed) do |f| %>
+	<%= f.label :url %>
+	<%= f.text_field :url %>
+
+	<%= f.submit 'Update feed'%>
+<% end %>
+
+

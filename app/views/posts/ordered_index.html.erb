@@ -1,0 +1,10 @@
+<% flash.each do |name, msg| %>
+  <%= name %>: <%= msg %>
+<% end %>
+</br></br>
+
+<% @posts.each do |post| %>
+	<%= link_to "#{post.title}", post.link, :target => "_blank" %>
+	</br>
+<% end %>
+
