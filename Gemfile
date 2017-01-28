@@ -63,3 +63,6 @@ end
 
 #Factory girl
 gem 'factory_girl_rails', '~> 4.5.0', group: [:development, :test]
+
+#Rails controller testing
+gem 'rails-controller-testing'

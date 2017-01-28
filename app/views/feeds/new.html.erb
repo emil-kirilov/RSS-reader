@@ -1,0 +1,21 @@
+error.messages
+<% unless @feed.errors.messages.empty? %>
+	<%= @feed.errors.messages %>
+<% end %>
+</br>
+
+notice : <%= p flash[:notice] if flash[:notice] %>
+</br>
+error: <%= p flash[:error] if flash[:error] %>
+</br>
+
+
+<p>New feed</p>
+
+<%= form_for @feed, :url => feeds_path do |f| %>
+	<%= f.label :url %>
+	<%= f.text_field :url %>
+
+	<%= f.submit 'Create feed'%>
+<% end %>
+

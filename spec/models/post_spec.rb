@@ -4,10 +4,10 @@ require 'spec_helper'
 RSpec.describe Post, :type => :model do
   it "is valid with valid attributes" do
     #TODO - figure out how to use FactoryGirl
-    feed = Feed.new(id: 7, url: 'test')
+    feed = Feed.new(id: 0, url: 'test')
     #TODO should not be able to save link with invalid url
     feed.save
-    post = Post.new(feed_id: 7, title: 'Title', link: 'link', pud_date: Time.now)
+    post = Post.new(feed_id: 0, title: 'Title', link: 'link', pud_date: Time.now)
   	expect(post).to be_valid
   end
   

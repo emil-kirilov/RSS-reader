@@ -1,0 +1,12 @@
+<% if flash[:notice] %>
+	<%=  flash[:notice] %>
+	</br>
+	</br>
+<% end %>
+
+<% @feeds.each do |feed| %>
+	<%= feed.inspect %>
+	</br>
+<% end %>
+
+<%= link_to 'Add new feed', new_feed_path %>
