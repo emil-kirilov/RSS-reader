@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 	end
 
 	def ordered_index
+		Feed.refresh_posts
 		@posts = Post.order('posts.pub_date DESC').all
 	end
 

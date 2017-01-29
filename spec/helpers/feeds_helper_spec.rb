@@ -55,4 +55,16 @@ describe FeedsHelper do
         }.to change(Post, :count).by(-1)
     end
   end
+
+  describe "#save_newer_posts_than" do
+    it "saves post that are new and do not exist in the DB" do
+      feed = Feed.create(url:'http://www.ruby-lang.org/en/feeds/news.rss')
+      save_posts feed
+      posts = Post.where(feed_id: feed.id).order('posts.pub_date DESC').first(2)
+      posts[0].destroy
+      expect{
+        save_newer_posts_than(feed, posts[1].pub_date)
+      }.to change(Post, :count).by(1)
+    end
+  end
 end

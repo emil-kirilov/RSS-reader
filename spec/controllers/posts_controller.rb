@@ -9,7 +9,7 @@ RSpec.describe PostsController, :type => :controller do
 		end
 
 		it "should list all posts" do
-			Feed.create(url: 'http://feeds.reuters.com/reuters/technologyNews') 
+			Feed.create(url: 'http://feeds.reuters.com/reuters/technologyNews')  	
 			Post.create(feed_id: 1, title: 'title', link: 'link', pub_date: Time.now)
 			Post.create(feed_id: 1, title: 'title', link: 'link', pub_date: Time.now)
 
@@ -25,15 +25,10 @@ RSpec.describe PostsController, :type => :controller do
 		end
 
 		it "should show all posts ordered by pub_date " do 
-			Feed.create(url: 'http://feeds.reuters.com/reuters/technologyNews') 
-			post0 = Post.create(feed_id: 1, title: 'title', link: 'link', pub_date: Time.new(2005))
-			post1 = Post.create(feed_id: 1, title: 'title', link: 'link', pub_date: Time.new(2000))
-			post2 = Post.create(feed_id: 1, title: 'title', link: 'link', pub_date: Time.new(1995))
-    	
+			feed = Feed.create(url: 'http://feeds.reuters.com/reuters/technologyNews') 
+    	Post.all.order('posts.pub_date ASC')
     	get :ordered_index
-    	expect(assigns[:posts][0]).to eq post0
-    	expect(assigns[:posts][1]).to eq post1
-    	expect(assigns[:posts][2]).to eq post2
+    	expect(assigns[:posts]).to eq assigns[:posts].order('posts.pub_date DESC') 
 		end
 	end
 

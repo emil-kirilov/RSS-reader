@@ -33,4 +33,25 @@ module FeedsHelper
 		posts = Post.where(feed_id: feed.id)
     posts.each { |post| post.destroy}
 	end
+
+	def save_newer_posts_than(feed, date)
+		#if
+		#begin 
+			open(feed.url) do |rss|
+		  	rss_data = RSS::Parser.parse(rss)
+		 	 	
+		 	 	rss_data.items.each do |item|
+			  	pub_date = item.pubDate
+			  	
+			  	unless pub_date <= date
+			  		post = feed.posts.create(feed_id: feed.id, title: item.title, link: item.link, pub_date: pub_date)
+						post.save
+			  	end
+				end
+			#flash[:notice] << " #{rss_data.items.length} new posts added."
+			end
+		#rescue 
+		# 	flash[:error] = "An error occured while parsing thedas RSS feeder!"
+		#end
+	end
 end
