@@ -14,7 +14,6 @@ class FeedsController < ApplicationController
 			flash.now[:error] = 'You have either entered an invalid link or you already receive news from this RSS feeder.'
 			render :new
 		end
-
 	end
 
 	def index
@@ -24,16 +23,13 @@ class FeedsController < ApplicationController
 	def destroy
 		@feed = Feed.find params[:id]
 
-		if @feed.delete
+		if @feed.destroy
       flash[:notice] = "The feed was deleted successfully."
-      #instead of dependent: :destroy which is currently not working 
-      destroy_child_posts @feed
-      
-      redirect_to feeds_path
+      flash[:notice] << "All releted posts were deleted."
     else
       flash[:error] = "The feed was not deleted."
-      redirect_to feeds_path
     end
+    redirect_to feeds_path
 	end
 
 	def edit
@@ -46,7 +42,7 @@ class FeedsController < ApplicationController
     if @feed.save
     	flash[:notice] = "The feed was updated successfully."
     	#TODO - check whether the url is not the same
-    	destroy_child_posts @feed
+    	destroy_related_posts @feed
     	save_posts @feed
 
       redirect_to feeds_path
